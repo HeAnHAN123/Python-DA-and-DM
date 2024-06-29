@@ -3,26 +3,6 @@
 import pandas as pd 
 import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
-
-"""数据整理 
-
-Scikit learn 的preprocessing 模块目前只能将X, Y形态的数据整理成为需要的
-形似。这里我们需要对时间序列数据进行重拍，将其整理成为X, y形式。
-
-对于每一个观测，因变量y代表当前秒的变化率，自变量X代表前几秒的变化率和
-成交量变化情况。
-
-这里有两个办法进行这样的处理：
-
-1) 通过for 循环，将观测逐个加入到X, y矩阵和向量中。这种方法短平快，但是
-程序可重复利用率较低。
-
-2) 撰写preprocessing 模块，通过preprocessing 模块的fit/transform模式对
-数据进行转换。这样的方法看似麻烦，但是代码可重复利用率高，可以为后面操
-作节省很多工作。
-
-""" 
-
 def embed_time_series(x, k):
     """this function would transform an N dimensional time series into a
     tuple containing: 
